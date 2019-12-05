@@ -51,4 +51,4 @@ class ObservableModel(models.Model):
     
     @classmethod
     def model_events(cls):
-        cls._subject.pipe(filter(lambda event: event['model'] == cls))
+        return cls._subject.pipe(filter(lambda event: event['model'] == cls))

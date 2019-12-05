@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-observable-models"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Jayden Windle <jaydenwindle@gmail.com>"]
 readme = "README.md"
