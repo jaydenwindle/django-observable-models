@@ -26,13 +26,11 @@ class ObservableModel(models.Model):
         if self.pk is None:
             self._subject.on_next({
                 "operation": self.CREATED,
-                "model": self.__class__,
                 "instance": self
             })
         else:
             self._subject.on_next({
                 "operation": self.UPDATED,
-                "model": self.__class__,
                 "instance": self
             })
 
@@ -45,10 +43,9 @@ class ObservableModel(models.Model):
     def _on_delete(self):
         self._subject.on_next({
             "operation": self.DELETED,
-            "model": self.__class__,
             "instance": self 
         })
     
     @classmethod
     def model_events(cls):
-        return cls._subject.pipe(filter(lambda event: event['model'] == cls))
+        return cls._subject.pipe(filter(lambda event: event['instance'].__class__ == cls))
